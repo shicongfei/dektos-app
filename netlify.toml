@@ -1,0 +1,8 @@
+# Netlify 部署配置
+# Netlify 会自动识别 Next.js，并使用官方的 Next.js 运行时，无需额外安装插件。
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
