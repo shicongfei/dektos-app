@@ -38,7 +38,7 @@ export function Video({ zh, en, title }: { zh: string; en: string; title: string
   }
   return (
     <div className="relative flex aspect-video w-full flex-col items-center justify-center gap-3 overflow-hidden rounded-md bg-ink text-paper">
-      <div className="pointer-events-none absolute inset-0 opacity-[0.07] [background-image:repeating-linear-gradient(90deg,#F7F3EC_0_1px,transparent_1px_28px)]" />
+      <div className="pointer-events-none absolute inset-0 opacity-[0.07] [background-image:repeating-linear-gradient(90deg,#F3ECE0_0_1px,transparent_1px_28px)]" />
       <span className="flex h-14 w-14 items-center justify-center rounded-full border border-paper/40">
         <svg viewBox="0 0 24 24" className="ml-1 h-6 w-6" fill="currentColor">
           <path d="M7 4.5v15l12-7.5z" />

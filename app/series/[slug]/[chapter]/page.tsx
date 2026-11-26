@@ -7,13 +7,14 @@ import { T } from "@/components/T";
 import { Badge } from "@/components/Badge";
 import { Video } from "@/components/Video";
 import { CardView } from "@/components/CardView";
+import { HexagramView } from "@/components/HexagramView";
 
 type Params = Promise<{ slug: string; chapter: string }>;
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return getAllSeries().flatMap((s) => getCards(s.slug).map((c) => ({ slug: s.slug, chapter: String(c.chapter) })));
+  return getAllSeries().flatMap((s) => getCards(s.slug).map((c) => ({ slug: s.slug, chapter: String(c.no) })));
 }
 
 export async function generateMetadata({ params }: { params: Params }) {
@@ -30,7 +31,7 @@ export default async function CardPage({ params }: { params: Params }) {
   if (!series || !card) notFound();
 
   const all = getCards(slug);
-  const idx = all.findIndex((c) => c.chapter === card.chapter);
+  const idx = all.findIndex((c) => c.no === card.no);
   const prev = all[idx - 1];
   const next = all[idx + 1];
   const free = isFreeCard(card, all);
@@ -55,17 +56,21 @@ export default async function CardPage({ params }: { params: Params }) {
       {!free && PREVIEW_MODE && (
         <p className="flex items-center justify-between gap-3 rounded-md bg-paper-deep px-4 py-3 text-xs text-ink-soft">
           <T t={ui.memberNotice} />
-          <Link href="/membership" className="shrink-0 text-seal underline underline-offset-4">
+          <Link href="/membership" className="shrink-0 text-accent underline underline-offset-4">
             <T t={ui.viewPlans} />
           </Link>
         </p>
       )}
 
-      <CardView card={card} bookZh={series.title_zh} bookEn={series.title_en} />
+      {card.type === "hexagram" ? (
+        <HexagramView card={card} series={series} available={all.map((c) => c.no)} />
+      ) : (
+        <CardView card={card} series={series} />
+      )}
 
       <nav className="grid grid-cols-2 gap-3 border-t border-line pt-5 text-sm">
         {prev ? (
-          <Link href={`/series/${slug}/${prev.chapter}`} className="rounded-md border border-line p-3 text-ink">
+          <Link href={`/series/${slug}/${prev.no}`} className="rounded-md border border-line p-3 text-ink">
             <div className="text-xs text-ink-soft">
               ← <T t={ui.prev} />
             </div>
@@ -77,7 +82,7 @@ export default async function CardPage({ params }: { params: Params }) {
           <span />
         )}
         {next ? (
-          <Link href={`/series/${slug}/${next.chapter}`} className="rounded-md border border-line p-3 text-right text-ink">
+          <Link href={`/series/${slug}/${next.no}`} className="rounded-md border border-line p-3 text-right text-ink">
             <div className="text-xs text-ink-soft">
               <T t={ui.next} /> →
             </div>

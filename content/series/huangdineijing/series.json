@@ -7,5 +7,9 @@
   "subtitle_en": "The Yellow Emperor's Classic of Medicine",
   "intro_zh": "《黄帝内经》是中医理论的奠基之作，以黄帝与岐伯问答的形式，讲述天人相应、阴阳调和与养生之道。本系列从《素问》开篇读起，并与圣经中关于身体、安息与节制的教导对照。",
   "intro_en": "The foundational text of Chinese medicine, written as dialogues between the Yellow Emperor and his physician Qibo, on harmony between heaven and humanity, yin and yang, and the art of nourishing life. Read here alongside biblical teaching on the body, rest and temperance.",
-  "total_chapters": 81
+  "total_chapters": 81,
+  "unit_zh": "篇",
+  "unit_en": "Chapter",
+  "brand_zh": "悦纳养生",
+  "brand_en": "Dektos Wellness"
 }

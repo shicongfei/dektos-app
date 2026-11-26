@@ -1,0 +1,84 @@
+{
+  "type": "hexagram",
+  "book": "yijing",
+  "chapter": 1,
+  "no": 1,
+  "title_zh": "第一卦 · 乾",
+  "title_en": "Hexagram 1 · Qian",
+  "name_zh": "乾",
+  "name_en": "Qian · The Creative",
+  "judgment_zh": "乾：**元，亨，利，贞**。",
+  "judgment_en": "",
+  "upper_zh": "乾 ☰ 天",
+  "upper_en": "Qian ☰ Heaven",
+  "lower_zh": "乾 ☰ 天",
+  "lower_en": "Qian ☰ Heaven",
+  "lines": [
+    {
+      "name_zh": "初九",
+      "name_en": "Line 1 · Nine",
+      "text_zh": "潜龙勿用。",
+      "text_en": "",
+      "card": 2
+    },
+    {
+      "name_zh": "九二",
+      "name_en": "Line 2 · Nine",
+      "text_zh": "见龙在田，利见大人。",
+      "text_en": "",
+      "card": 3
+    },
+    {
+      "name_zh": "九三",
+      "name_en": "Line 3 · Nine",
+      "text_zh": "君子终日乾乾，夕惕若厉，无咎。",
+      "text_en": "",
+      "card": 4
+    },
+    {
+      "name_zh": "九四",
+      "name_en": "Line 4 · Nine",
+      "text_zh": "或跃在渊，无咎。",
+      "text_en": "",
+      "card": 5
+    },
+    {
+      "name_zh": "九五",
+      "name_en": "Line 5 · Nine",
+      "text_zh": "飞龙在天，利见大人。",
+      "text_en": "",
+      "card": 6
+    },
+    {
+      "name_zh": "上九",
+      "name_en": "Line 6 · Nine",
+      "text_zh": "亢龙有悔。",
+      "text_en": "",
+      "card": 7
+    }
+  ],
+  "see_also": [
+    {
+      "label_zh": "用九",
+      "label_en": "All Nines",
+      "card": 8
+    },
+    {
+      "label_zh": "彖传",
+      "label_en": "Tuan Commentary",
+      "card": 9
+    },
+    {
+      "label_zh": "大象",
+      "label_en": "Great Image",
+      "card": 10
+    },
+    {
+      "label_zh": "说卦",
+      "label_en": "Discussion of the Trigrams",
+      "card": 11
+    }
+  ],
+  "video_zh": "",
+  "video_en": ""
+}

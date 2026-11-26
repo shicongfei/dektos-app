@@ -4,7 +4,7 @@ import { T } from "./T";
 type Kind = "free" | "member";
 
 const styles: Record<Kind, string> = {
-  free: "border-seal bg-seal text-paper",
+  free: "border-accent bg-accent text-paper",
   member: "border-ink/70 text-ink",
 };
 

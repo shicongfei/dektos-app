@@ -7,23 +7,64 @@ const CONTENT_DIR = path.join(process.cwd(), "content");
 export const BOOKS = ["daodejing", "yijing", "huangdineijing"] as const;
 export type Book = (typeof BOOKS)[number];
 
-/** 对照卡片：/content/cards 里的一个 JSON 文件 */
-export type Card = {
+/** 一节经文 */
+export type Verse = {
+  text_zh: string; // 和合本
+  text_en: string; // KJV
+  ref_zh: string; // 约翰福音 1:1-3
+  ref_en: string; // John 1:1-3
+};
+
+type BaseCard = {
   book: Book;
-  chapter: number;
+  chapter: number; // 第几章 / 第几卦 / 第几篇
+  no: number; // 卡片编号（同一部经典内唯一，用在网址里；省略时等于 chapter）
+  series_index: number | null; // 显示「1 / 81」
+  series_total: number | null;
   title_zh: string;
   title_en: string;
-  original: string; // 原文
-  vernacular_zh: string; // 白话
-  translation_en: string; // James Legge 译文
-  scripture_zh: string; // 和合本
-  scripture_en: string; // KJV
-  scripture_ref: string; // 例如 John 1:1-3
-  insight_zh: string; // 对照点睛
-  insight_en: string;
   video_zh: string;
   video_en: string;
 };
+
+/** 一般的对照卡片 */
+export type TextCard = BaseCard & {
+  type: "card";
+  original: string; // 原文，可用 **重点字**
+  vernacular_zh: string; // 白话
+  translation_en: string; // James Legge 译文
+  scripture: Verse[];
+  insight_zh: string; // 对照点睛，可用 **重点字**
+  insight_en: string;
+};
+
+export type HexLine = {
+  name_zh: string; // 初九、六二……（九 = 阳爻，六 = 阴爻）
+  name_en: string;
+  text_zh: string; // 爻辞
+  text_en: string;
+  yang: boolean;
+  card: number | null; // 对应的对读卡编号
+};
+
+export type SeeAlso = { label_zh: string; label_en: string; card: number | null };
+
+/** 易经每一卦的总览卡 */
+export type HexagramCard = BaseCard & {
+  type: "hexagram";
+  name_zh: string; // 卦名
+  name_en: string;
+  judgment_zh: string; // 卦辞
+  judgment_en: string;
+  upper_zh: string; // 上卦
+  upper_en: string;
+  lower_zh: string; // 下卦
+  lower_en: string;
+  lines: HexLine[]; // 六爻，自下而上
+  see_also: SeeAlso[]; // 另见：用九、彖传、大象、说卦……
+};
+
+export type Card = TextCard | HexagramCard;
 
 export type Series = {
   slug: string;
@@ -35,6 +76,10 @@ export type Series = {
   intro_zh: string;
   intro_en: string;
   total_chapters: number;
+  unit_zh: string; // 章 / 卦 / 篇
+  unit_en: string; // Chapter / Hexagram
+  brand_zh: string; // 子品牌：悦纳哲学
+  brand_en: string; // Dektos Philosophy
 };
 
 export type DailyVerse = {
@@ -82,41 +127,112 @@ export function getSeries(slug: string): Series | null {
   return getAllSeries().find((s) => s.slug === slug) ?? null;
 }
 
-const CARD_FIELDS = [
-  "title_zh",
-  "title_en",
-  "original",
-  "vernacular_zh",
-  "translation_en",
-  "scripture_zh",
-  "scripture_en",
-  "scripture_ref",
-  "insight_zh",
-  "insight_en",
-  "video_zh",
-  "video_en",
-] as const;
+class CardError extends Error {}
 
 /** 读取并检查一张卡片；格式有误时让构建失败，并指出是哪个文件、哪个字段 */
 function parseCard(file: string): Card {
+  const rel = path.relative(process.cwd(), file);
   let data: Record<string, unknown>;
   try {
     data = JSON.parse(fs.readFileSync(file, "utf8"));
   } catch (e) {
-    throw new Error(`卡片 JSON 格式错误：${file}\n${(e as Error).message}`);
+    throw new CardError(`卡片 JSON 格式错误：${rel}\n${(e as Error).message}`);
   }
-  const fail = (msg: string) => {
-    throw new Error(`卡片内容有误：${path.relative(process.cwd(), file)} — ${msg}`);
+  const fail = (msg: string): never => {
+    throw new CardError(`卡片内容有误：${rel} — ${msg}`);
   };
+  const str = (obj: Record<string, unknown>, k: string, where = "") => {
+    const v = obj[k] ?? "";
+    if (typeof v !== "string") fail(`${where}${k} 必须是文字（用双引号括起来）`);
+    return (v as string).trim();
+  };
+  const int = (obj: Record<string, unknown>, k: string, where = "", optional = true): number | null => {
+    const v = obj[k];
+    if (v === undefined || v === null || v === "") {
+      if (!optional) fail(`${where}${k} 不能留空`);
+      return null;
+    }
+    if (!Number.isInteger(v) || (v as number) < 1) fail(`${where}${k} 必须是正整数（不加引号）`);
+    return v as number;
+  };
+  const arr = (k: string) => {
+    const v = data[k] ?? [];
+    if (!Array.isArray(v)) fail(`${k} 必须是列表，用 [ ] 括起来`);
+    return v as Record<string, unknown>[];
+  };
+
   if (!BOOKS.includes(data.book as Book)) fail(`book 必须是 ${BOOKS.join(" / ")}，现在是 "${data.book}"`);
-  if (!Number.isInteger(data.chapter) || (data.chapter as number) < 1) fail(`chapter 必须是正整数`);
-  const card = { book: data.book, chapter: data.chapter } as Card;
-  for (const k of CARD_FIELDS) {
-    const v = data[k] ?? "";
-    if (typeof v !== "string") fail(`${k} 必须是文字（用双引号括起来）`);
-    card[k] = (v as string).trim();
+  const type = data.type ?? "card";
+  if (type !== "card" && type !== "hexagram") fail(`type 只能是 "card" 或 "hexagram"`);
+  const chapter = int(data, "chapter", "", false)!;
+
+  const base: BaseCard = {
+    book: data.book as Book,
+    chapter,
+    no: int(data, "no") ?? chapter,
+    series_index: int(data, "series_index"),
+    series_total: int(data, "series_total"),
+    title_zh: str(data, "title_zh"),
+    title_en: str(data, "title_en"),
+    video_zh: str(data, "video_zh"),
+    video_en: str(data, "video_en"),
+  };
+
+  if (type === "hexagram") {
+    if (base.book !== "yijing") fail(`type "hexagram" 只能用于易经（book: "yijing"）`);
+    const lines = arr("lines").map((l, i) => {
+      const where = `lines 第 ${i + 1} 爻的 `;
+      const name_zh = str(l, "name_zh", where);
+      const yang =
+        typeof l.yang === "boolean" ? l.yang : name_zh.includes("九") ? true : name_zh.includes("六") ? false : fail(`${where}name_zh 要含「九」或「六」，或另填 yang: true / false`);
+      return {
+        name_zh,
+        name_en: str(l, "name_en", where),
+        text_zh: str(l, "text_zh", where),
+        text_en: str(l, "text_en", where),
+        yang: yang as boolean,
+        card: int(l, "card", where),
+      };
+    });
+    if (lines.length !== 6) fail(`lines 必须正好有 6 爻（自下而上），现在有 ${lines.length} 个`);
+    return {
+      ...base,
+      type: "hexagram",
+      name_zh: str(data, "name_zh"),
+      name_en: str(data, "name_en"),
+      judgment_zh: str(data, "judgment_zh"),
+      judgment_en: str(data, "judgment_en"),
+      upper_zh: str(data, "upper_zh"),
+      upper_en: str(data, "upper_en"),
+      lower_zh: str(data, "lower_zh"),
+      lower_en: str(data, "lower_en"),
+      lines,
+      see_also: arr("see_also").map((x, i) => ({
+        label_zh: str(x, "label_zh", `see_also 第 ${i + 1} 项的 `),
+        label_en: str(x, "label_en", `see_also 第 ${i + 1} 项的 `),
+        card: int(x, "card", `see_also 第 ${i + 1} 项的 `),
+      })),
+    };
   }
-  return card;
+
+  return {
+    ...base,
+    type: "card",
+    original: str(data, "original"),
+    vernacular_zh: str(data, "vernacular_zh"),
+    translation_en: str(data, "translation_en"),
+    scripture: arr("scripture").map((v, i) => {
+      const where = `scripture 第 ${i + 1} 节的 `;
+      return {
+        text_zh: str(v, "text_zh", where),
+        text_en: str(v, "text_en", where),
+        ref_zh: str(v, "ref_zh", where),
+        ref_en: str(v, "ref_en", where),
+      };
+    }),
+    insight_zh: str(data, "insight_zh"),
+    insight_en: str(data, "insight_en"),
+  };
 }
 
 let cardCache: Card[] | null = null;
@@ -132,23 +248,24 @@ export function getAllCards(): Card[] {
     : [];
   const seen = new Set<string>();
   for (const c of cards) {
-    const key = `${c.book}-${c.chapter}`;
-    if (seen.has(key)) throw new Error(`有两张卡片都是 ${c.book} 第 ${c.chapter} 章，请删除或改掉其中一张`);
+    const key = `${c.book}-${c.no}`;
+    if (seen.has(key))
+      throw new CardError(`有两张 ${c.book} 卡片的编号都是 ${c.no}（no 省略时等于 chapter），请改掉其中一张`);
     seen.add(key);
   }
   cardCache = cards;
   return cards;
 }
 
-/** 某部经典的卡片，按章号排序 */
+/** 某部经典的卡片，按编号排序 */
 export function getCards(book: string): Card[] {
   return getAllCards()
     .filter((c) => c.book === book)
-    .sort((a, b) => a.chapter - b.chapter);
+    .sort((a, b) => a.no - b.no);
 }
 
-export function getCard(book: string, chapter: number): Card | null {
-  return getCards(book).find((c) => c.chapter === chapter) ?? null;
+export function getCard(book: string, no: number): Card | null {
+  return getCards(book).find((c) => c.no === no) ?? null;
 }
 
 export function getDailyVerses(): DailyVerse[] {

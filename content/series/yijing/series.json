@@ -7,5 +7,9 @@
   "subtitle_en": "The Book of Changes",
   "intro_zh": "《易经》被誉为「群经之首」，以六十四卦描绘天地万物的变化之理。本系列从乾、坤两卦入手，逐卦解读卦辞与爻辞，并与圣经中关于创造、时序与天命的经文对读。",
   "intro_en": "Called the first of the classics, the I Ching uses 64 hexagrams to describe the patterns of change in heaven, earth and human life. Beginning with Qian and Kun, this series reads each hexagram alongside biblical passages on creation, seasons and providence.",
-  "total_chapters": 64
+  "total_chapters": 64,
+  "unit_zh": "卦",
+  "unit_en": "Hexagram",
+  "brand_zh": "悦纳哲学",
+  "brand_en": "Dektos Philosophy"
 }

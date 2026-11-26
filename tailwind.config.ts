@@ -5,14 +5,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        paper: "#F7F3EC",
-        "paper-deep": "#EFE8DC",
-        ink: "#1C1A17",
-        "ink-soft": "#5C564D",
-        seal: "#A8322A",
-        navy: "#1E2F4D",
-        "navy-soft": "#C9D3E3",
-        line: "#DDD4C4",
+        paper: "#F3ECE0",
+        "paper-deep": "#E9E0D0",
+        ink: "#1F2430",
+        "ink-soft": "#5B6070",
+        line: "#C8B896",
+        seal: "#B73D29",
+        // 主题色：随所在的书切换（见 app/globals.css）
+        accent: "rgb(var(--accent) / <alpha-value>)",
+        note: "rgb(var(--note) / <alpha-value>)",
+        "block-emph": "rgb(var(--block-emph) / <alpha-value>)",
       },
       fontFamily: {
         serif: ['"Noto Serif SC"', "Songti SC", "SimSun", "serif"],

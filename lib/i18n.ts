@@ -20,6 +20,13 @@ export const ui = {
   readLatest: { zh: "阅读最新卡片", en: "Read the latest card" },
   scripture: { zh: "圣经 · 和合本", en: "THE BIBLE · KJV" },
   insight: { zh: "对照点睛", en: "THE INSIGHT" },
+  upperTrigram: { zh: "上卦", en: "UPPER" },
+  lowerTrigram: { zh: "下卦", en: "LOWER" },
+  judgment: { zh: "卦辞", en: "THE JUDGMENT" },
+  sixLines: { zh: "六爻", en: "THE SIX LINES" },
+  tapLine: { zh: "点一爻看对读", en: "Tap a line to read" },
+  seeAlso: { zh: "另见", en: "SEE ALSO" },
+  comingSoonShort: { zh: "待上线", en: "Soon" },
   vernacularPending: { zh: "白话译文即将补上。", en: "Modern Chinese rendering coming soon." },
   memberNotice: {
     zh: "这是会员卡片。预览版暂时开放浏览。",

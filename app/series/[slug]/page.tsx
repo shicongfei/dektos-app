@@ -5,6 +5,7 @@ import { isFreeCard } from "@/lib/access";
 import { ui } from "@/lib/i18n";
 import { T } from "@/components/T";
 import { Badge } from "@/components/Badge";
+import { plain } from "@/components/Rich";
 
 export const dynamicParams = false;
 
@@ -27,7 +28,7 @@ export default async function SeriesPage({ params }: { params: Promise<{ slug: s
   return (
     <div className="space-y-6">
       <section className="flex gap-4 pt-2">
-        <div className="flex h-32 w-20 shrink-0 items-center justify-center rounded-sm bg-ink font-serif font-bold text-paper">
+        <div className="flex h-32 w-20 shrink-0 items-center justify-center rounded-sm bg-accent font-serif font-bold text-paper">
           <span
             style={{
               writingMode: "vertical-rl",
@@ -46,7 +47,7 @@ export default async function SeriesPage({ params }: { params: Promise<{ slug: s
           <p className="text-sm text-ink-soft">
             <T zh={series.subtitle_zh} en={series.subtitle_en} />
           </p>
-          <p className="mt-1 text-xs text-seal">
+          <p className="mt-1 text-xs text-accent">
             <T t={ui.cardsCount} vars={{ n: cards.length }} />
           </p>
         </div>
@@ -75,19 +76,26 @@ export default async function SeriesPage({ params }: { params: Promise<{ slug: s
         ) : (
           <ul className="space-y-3">
             {newestFirst.map((c) => (
-              <li key={c.chapter}>
+              <li key={c.no}>
                 <Link
-                  href={`/series/${slug}/${c.chapter}`}
+                  href={`/series/${slug}/${c.no}`}
                   className="block overflow-hidden rounded-md border border-line bg-white/50 active:bg-paper-deep"
                 >
                   <div className="flex items-center justify-between gap-3 px-4 pt-3">
                     <span className="truncate text-sm font-medium text-ink">
                       <T zh={c.title_zh} en={c.title_en} />
+                      {c.series_index && c.series_total ? (
+                        <span className="ml-2 font-serif text-xs text-accent">
+                          {c.series_index} / {c.series_total}
+                        </span>
+                      ) : null}
                     </span>
                     <Badge kind={isFreeCard(c, cards) ? "free" : "member"} />
                   </div>
-                  <p className="truncate px-4 pb-3 pt-2 font-serif text-lg text-ink">{c.original}</p>
-                  <div className="h-1.5 bg-navy" />
+                  <p className="truncate px-4 pb-3 pt-2 font-serif text-lg text-ink">
+                    {c.type === "hexagram" ? `${c.name_zh} · ${plain(c.judgment_zh)}` : plain(c.original)}
+                  </p>
+                  <div className="h-1.5 bg-accent" />
                 </Link>
               </li>
             ))}
