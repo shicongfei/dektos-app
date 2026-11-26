@@ -3,6 +3,8 @@ import "./globals.css";
 import { LangProvider } from "@/components/LangProvider";
 import { Header } from "@/components/Header";
 import { BottomNav } from "@/components/BottomNav";
+import { ThemeRoot } from "@/components/Brand";
+import { getLogoSrc } from "@/lib/logo";
 
 export const metadata: Metadata = {
   title: "悦纳 Dektos · 以经解经 · 东西对读",
@@ -12,7 +14,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#F7F3EC",
+  themeColor: "#F3ECE0",
   viewportFit: "cover",
 };
 
@@ -29,9 +31,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="min-h-screen font-sans antialiased">
         <LangProvider>
-          <Header />
-          <main className="mx-auto max-w-app px-4 pb-28 pt-5">{children}</main>
-          <BottomNav />
+          <ThemeRoot logo={getLogoSrc()}>
+            <Header />
+            <main className="mx-auto max-w-app px-4 pb-28 pt-5">{children}</main>
+            <BottomNav />
+          </ThemeRoot>
         </LangProvider>
       </body>
     </html>

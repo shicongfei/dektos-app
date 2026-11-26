@@ -2,14 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+/* 主题色（RGB 三个数字）。首页、会员页等默认用印章红。 */
+:root {
+  --accent: 183 61 41; /* #B73D29 印章红 */
+  --note: 233 224 208; /* 注释框背景 */
+  --block-emph: 255 255 255; /* 圣经色块里的重点字 */
+}
+[data-theme="daodejing"] {
+  --accent: 29 79 200; /* #1D4FC8 */
+}
+[data-theme="huangdineijing"] {
+  --accent: 92 45 145; /* #5C2D91 */
+  --block-emph: 246 214 130; /* #F6D682 金色 */
+}
+[data-theme="yijing"] {
+  --accent: 180 35 24; /* #B42318 */
+  --note: 232 222 205; /* #E8DECD */
+}
+
 html {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
 }
 
 body {
-  background: #f7f3ec;
-  color: #1c1a17;
+  background: #f3ece0;
+  color: #1f2430;
 }
 
 /* 细微的纸张纹理 */
@@ -19,6 +37,6 @@ body::before {
   inset: 0;
   pointer-events: none;
   z-index: -1;
-  background-image: radial-gradient(rgba(28, 26, 23, 0.035) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(31, 36, 48, 0.035) 1px, transparent 1px);
   background-size: 4px 4px;
 }

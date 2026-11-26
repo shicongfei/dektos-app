@@ -32,7 +32,7 @@ export default function LoginPage() {
           <input
             type="email"
             autoComplete="email"
-            className="w-full rounded-md border border-line bg-white/70 px-3 py-3 text-base outline-none focus:border-seal"
+            className="w-full rounded-md border border-line bg-white/70 px-3 py-3 text-base outline-none focus:border-accent"
             placeholder="name@example.com"
           />
         </label>
@@ -46,7 +46,7 @@ export default function LoginPage() {
           <input
             type="password"
             autoComplete="current-password"
-            className="w-full rounded-md border border-line bg-white/70 px-3 py-3 text-base outline-none focus:border-seal"
+            className="w-full rounded-md border border-line bg-white/70 px-3 py-3 text-base outline-none focus:border-accent"
           />
         </label>
         <button type="submit" className="w-full rounded-md bg-ink py-3 text-sm font-medium text-paper">
@@ -80,7 +80,7 @@ export default function LoginPage() {
 
       <p className="mt-8 text-center text-sm text-ink-soft">
         <T t={ui.noAccount} />{" "}
-        <Link href="/login" className="text-seal underline underline-offset-4">
+        <Link href="/login" className="text-accent underline underline-offset-4">
           <T t={ui.signup} />
         </Link>
       </p>

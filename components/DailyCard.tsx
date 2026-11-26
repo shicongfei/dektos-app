@@ -30,7 +30,7 @@ export function DailyCard({ verses }: { verses: DailyVerse[] }) {
     <section className="relative overflow-hidden rounded-md border border-line bg-white/60 p-5">
       <div className="mb-4 flex items-center justify-between">
         <h2 className="flex items-center gap-2 text-sm font-medium text-ink">
-          <span className="inline-block h-3 w-3 bg-seal" />
+          <span className="inline-block h-3 w-3 bg-accent" />
           <T t={ui.todayVerse} />
         </h2>
         <span className="text-xs text-ink-soft" suppressHydrationWarning>
@@ -46,7 +46,7 @@ export function DailyCard({ verses }: { verses: DailyVerse[] }) {
         </figcaption>
       </figure>
 
-      <div className="my-4 flex items-center gap-3 text-seal">
+      <div className="my-4 flex items-center gap-3 text-accent">
         <span className="h-px flex-1 bg-line" />
         <span className="font-serif text-sm">对 读</span>
         <span className="h-px flex-1 bg-line" />

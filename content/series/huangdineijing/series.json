@@ -1,5 +1,5 @@
 {
-  "slug": "huangdineiji",
+  "slug": "huangdineijing",
   "order": 3,
   "title_zh": "黄帝内经",
   "title_en": "Huangdi Neijing",
@@ -8,10 +8,8 @@
   "intro_zh": "《黄帝内经》是中医理论的奠基之作，以黄帝与岐伯问答的形式，讲述天人相应、阴阳调和与养生之道。本系列从《素问》开篇读起，并与圣经中关于身体、安息与节制的教导对照。",
   "intro_en": "The foundational text of Chinese medicine, written as dialogues between the Yellow Emperor and his physician Qibo, on harmony between heaven and humanity, yin and yang, and the art of nourishing life. Read here alongside biblical teaching on the body, rest and temperance.",
   "total_chapters": 81,
-  "planned": [
-    { "chapter": 1, "title_zh": "上古天真论", "title_en": "On the Innate Truth of Ancient Times" },
-    { "chapter": 2, "title_zh": "四气调神大论", "title_en": "On Regulating the Spirit with the Four Seasons" },
-    { "chapter": 3, "title_zh": "生气通天论", "title_en": "On Vital Qi Connecting with Heaven" },
-    { "chapter": 4, "title_zh": "金匮真言论", "title_en": "On the True Words of the Golden Chest" }
-  ]
+  "unit_zh": "篇",
+  "unit_en": "Chapter",
+  "brand_zh": "悦纳养生",
+  "brand_en": "Dektos Wellness"
 }

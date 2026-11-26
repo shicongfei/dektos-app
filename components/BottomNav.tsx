@@ -31,7 +31,7 @@ export function BottomNav() {
               <Link
                 href={it.href}
                 className={`flex h-full flex-col items-center justify-center gap-1 text-[11px] ${
-                  active ? "text-seal" : "text-ink-soft"
+                  active ? "text-accent" : "text-ink-soft"
                 }`}
                 aria-current={active ? "page" : undefined}
               >

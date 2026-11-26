@@ -33,7 +33,7 @@ export function Pricing({ data }: { data: Membership }) {
         <T t={ui.yearlySave} />
       </p>
 
-      <div className="mb-6 flex items-center justify-center gap-2 rounded-md bg-seal px-4 py-2.5 text-sm text-paper">
+      <div className="mb-6 flex items-center justify-center gap-2 rounded-md bg-accent px-4 py-2.5 text-sm text-paper">
         <span className="font-serif">◆</span>
         <T t={ui.earlyBird} />
       </div>
@@ -50,7 +50,7 @@ export function Pricing({ data }: { data: Membership }) {
             <article
               key={tier.id}
               className={`relative rounded-md border p-5 ${
-                tier.highlight ? "border-seal bg-white/80 shadow-[0_0_0_1px_#A8322A]" : "border-line bg-white/50"
+                tier.highlight ? "border-accent bg-white/80 ring-1 ring-accent" : "border-line bg-white/50"
               }`}
             >
               <h3 className="font-serif text-lg font-semibold text-ink">
@@ -74,7 +74,7 @@ export function Pricing({ data }: { data: Membership }) {
               </div>
 
               {!isFree && (
-                <p className="mt-1 text-sm text-seal">
+                <p className="mt-1 text-sm text-accent">
                   <T t={ui.earlyBirdPrice} /> {cur}
                   {money(early)}
                   <T t={unit} />
@@ -88,7 +88,7 @@ export function Pricing({ data }: { data: Membership }) {
               <ul className="mt-4 space-y-2 text-sm text-ink">
                 {features.map((f) => (
                   <li key={f} className="flex gap-2">
-                    <span className="text-seal">✓</span>
+                    <span className="text-accent">✓</span>
                     {f}
                   </li>
                 ))}
@@ -97,7 +97,7 @@ export function Pricing({ data }: { data: Membership }) {
               <button
                 disabled
                 className={`mt-5 w-full rounded-md py-2.5 text-sm ${
-                  isFree ? "border border-line text-ink-soft" : tier.highlight ? "bg-seal text-paper" : "bg-ink text-paper"
+                  isFree ? "border border-line text-ink-soft" : tier.highlight ? "bg-accent text-paper" : "bg-ink text-paper"
                 } disabled:cursor-not-allowed`}
                 title={lang === "zh" ? ui.paymentSoon.zh : ui.paymentSoon.en}
               >
