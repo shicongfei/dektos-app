@@ -1,0 +1,17 @@
+{
+  "slug": "yijing",
+  "order": 1,
+  "title_zh": "易经",
+  "title_en": "I Ching",
+  "subtitle_zh": "群经之首 · 变易之书",
+  "subtitle_en": "The Book of Changes",
+  "intro_zh": "《易经》被誉为「群经之首」，以六十四卦描绘天地万物的变化之理。本系列从乾、坤两卦入手，逐卦解读卦辞与爻辞，并与圣经中关于创造、时序与天命的经文对读。",
+  "intro_en": "Called the first of the classics, the I Ching uses 64 hexagrams to describe the patterns of change in heaven, earth and human life. Beginning with Qian and Kun, this series reads each hexagram alongside biblical passages on creation, seasons and providence.",
+  "total_chapters": 64,
+  "planned": [
+    { "chapter": 1, "title_zh": "第一卦 · 乾", "title_en": "Hexagram 1 · Qian (The Creative)" },
+    { "chapter": 2, "title_zh": "第二卦 · 坤", "title_en": "Hexagram 2 · Kun (The Receptive)" },
+    { "chapter": 3, "title_zh": "第三卦 · 屯", "title_en": "Hexagram 3 · Zhun (Difficulty at the Beginning)" },
+    { "chapter": 4, "title_zh": "第四卦 · 蒙", "title_en": "Hexagram 4 · Meng (Youthful Folly)" }
+  ]
+}
