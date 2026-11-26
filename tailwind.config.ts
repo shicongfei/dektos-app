@@ -10,6 +10,8 @@ const config: Config = {
         ink: "#1C1A17",
         "ink-soft": "#5C564D",
         seal: "#A8322A",
+        navy: "#1E2F4D",
+        "navy-soft": "#C9D3E3",
         line: "#DDD4C4",
       },
       fontFamily: {

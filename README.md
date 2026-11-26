@@ -12,16 +12,16 @@ npm run build      # 生产构建
 
 ## 目录
 
-- `app/` 页面：首页、`/courses`、`/series/[slug]`、`/series/[slug]/[chapter]`、`/membership`、`/login`、`/me`
+- `app/` 页面：首页、`/courses`、`/series/[slug]`、`/series/[slug]/[chapter]`（对照卡片）、`/membership`、`/login`、`/me`
 - `components/` 界面组件（印章、底部导航、语言切换等）
 - `content/` **经文与课程内容**，编辑方法见 [`content/README.md`](content/README.md)
 - `lib/i18n.ts` 界面中英文文字
-- `lib/access.ts` 会员规则（免费章节数、预览模式）
+- `lib/access.ts` 会员规则（最新一张卡片免费、预览模式）
 
 ## 尚未接入
 
 登录、付款、数据库。目前 `lib/access.ts` 中 `PREVIEW_MODE = true`，
-「圣经对读」等会员内容会标示解锁等级，但暂时开放浏览。
+会员卡片会标示「会员」，但暂时开放浏览。
 
 ## 部署到 Netlify
 

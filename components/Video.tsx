@@ -1,24 +1,37 @@
+"use client";
+
 import { ui } from "@/lib/i18n";
+import { useLang } from "./LangProvider";
 import { T } from "./T";
 
 function toEmbed(url: string) {
-  const yt = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})/);
+  const yt = url.match(/(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/)([\w-]{11})/);
   if (yt) return `https://www.youtube.com/embed/${yt[1]}`;
-  const vimeo = url.match(/vimeo\.com\/(\d+)/);
+  const vimeo = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
   if (vimeo) return `https://player.vimeo.com/video/${vimeo[1]}`;
   return null;
 }
 
-/** 视频区：在章节文件里填写 video: 链接即可显示；留空时显示占位 */
-export function Video({ src, title }: { src: string; title: string }) {
+/** 视频区：按当前语言选 video_zh / video_en；没有时显示占位 */
+export function Video({ zh, en, title }: { zh: string; en: string; title: string }) {
+  const { lang } = useLang();
+  const src = lang === "en" ? en || zh : zh || en;
+
   if (src) {
     const embed = toEmbed(src);
     return (
       <div className="aspect-video w-full overflow-hidden rounded-md bg-ink">
         {embed ? (
-          <iframe src={embed} title={title} className="h-full w-full" allow="fullscreen; picture-in-picture" allowFullScreen />
+          <iframe
+            key={embed}
+            src={embed}
+            title={title}
+            className="h-full w-full"
+            allow="fullscreen; picture-in-picture"
+            allowFullScreen
+          />
         ) : (
-          <video src={src} controls playsInline className="h-full w-full" />
+          <video key={src} src={src} controls playsInline className="h-full w-full" />
         )}
       </div>
     );

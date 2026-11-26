@@ -1,39 +1,39 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getAllSeries, getChapter, getChapters, getSeries } from "@/lib/content";
-import { chapterLevel } from "@/lib/access";
+import { getAllSeries, getCard, getCards, getSeries } from "@/lib/content";
+import { isFreeCard, PREVIEW_MODE } from "@/lib/access";
 import { ui } from "@/lib/i18n";
 import { T } from "@/components/T";
 import { Badge } from "@/components/Badge";
 import { Video } from "@/components/Video";
-import { EpisodeTabs } from "@/components/EpisodeTabs";
+import { CardView } from "@/components/CardView";
 
 type Params = Promise<{ slug: string; chapter: string }>;
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return getAllSeries().flatMap((s) => getChapters(s.slug).map((c) => ({ slug: s.slug, chapter: String(c.chapter) })));
+  return getAllSeries().flatMap((s) => getCards(s.slug).map((c) => ({ slug: s.slug, chapter: String(c.chapter) })));
 }
 
 export async function generateMetadata({ params }: { params: Params }) {
   const { slug, chapter } = await params;
   const s = getSeries(slug);
-  const c = getChapter(slug, Number(chapter));
+  const c = getCard(slug, Number(chapter));
   return { title: s && c ? `${s.title_zh} ${c.title_zh} · 悦纳 Dektos` : "悦纳 Dektos" };
 }
 
-export default async function EpisodePage({ params }: { params: Params }) {
+export default async function CardPage({ params }: { params: Params }) {
   const { slug, chapter: chapterParam } = await params;
   const series = getSeries(slug);
-  const chapter = getChapter(slug, Number(chapterParam));
-  if (!series || !chapter) notFound();
+  const card = getCard(slug, Number(chapterParam));
+  if (!series || !card) notFound();
 
-  const all = getChapters(slug);
-  const idx = all.findIndex((c) => c.chapter === chapter.chapter);
+  const all = getCards(slug);
+  const idx = all.findIndex((c) => c.chapter === card.chapter);
   const prev = all[idx - 1];
   const next = all[idx + 1];
-  const level = chapterLevel(chapter.chapter);
+  const free = isFreeCard(card, all);
 
   return (
     <div className="space-y-5">
@@ -41,18 +41,27 @@ export default async function EpisodePage({ params }: { params: Params }) {
         ← <T zh={series.title_zh} en={series.title_en} /> · <T t={ui.backToSeries} />
       </Link>
 
-      <Video src={chapter.video} title={chapter.title_en} />
+      <Video zh={card.video_zh} en={card.video_en} title={card.title_en} />
 
-      <header>
-        <div className="mb-1.5 flex items-center gap-2">
-          <Badge kind={level === "free" ? "free" : "basic"} />
-        </div>
+      <header className="flex items-start justify-between gap-3">
         <h1 className="font-serif text-2xl font-bold leading-snug text-ink">
-          <T zh={chapter.title_zh} en={chapter.title_en} />
+          <T zh={card.title_zh} en={card.title_en} />
         </h1>
+        <span className="mt-1.5">
+          <Badge kind={free ? "free" : "member"} />
+        </span>
       </header>
 
-      <EpisodeTabs chapter={chapter} />
+      {!free && PREVIEW_MODE && (
+        <p className="flex items-center justify-between gap-3 rounded-md bg-paper-deep px-4 py-3 text-xs text-ink-soft">
+          <T t={ui.memberNotice} />
+          <Link href="/membership" className="shrink-0 text-seal underline underline-offset-4">
+            <T t={ui.viewPlans} />
+          </Link>
+        </p>
+      )}
+
+      <CardView card={card} bookZh={series.title_zh} bookEn={series.title_en} />
 
       <nav className="grid grid-cols-2 gap-3 border-t border-line pt-5 text-sm">
         {prev ? (

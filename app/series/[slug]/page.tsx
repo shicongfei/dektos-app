@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getAllSeries, getChapterList, getSeries } from "@/lib/content";
-import { chapterLevel } from "@/lib/access";
+import { getAllSeries, getCards, getSeries } from "@/lib/content";
+import { isFreeCard } from "@/lib/access";
 import { ui } from "@/lib/i18n";
 import { T } from "@/components/T";
 import { Badge } from "@/components/Badge";
@@ -21,8 +21,8 @@ export default async function SeriesPage({ params }: { params: Promise<{ slug: s
   const { slug } = await params;
   const series = getSeries(slug);
   if (!series) notFound();
-  const chapters = getChapterList(series);
-  const first = chapters.find((c) => c.available);
+  const cards = getCards(slug);
+  const newestFirst = [...cards].reverse();
 
   return (
     <div className="space-y-6">
@@ -47,7 +47,7 @@ export default async function SeriesPage({ params }: { params: Promise<{ slug: s
             <T zh={series.subtitle_zh} en={series.subtitle_en} />
           </p>
           <p className="mt-1 text-xs text-seal">
-            <T t={ui.chaptersCount} vars={{ n: series.total_chapters }} />
+            <T t={ui.cardsCount} vars={{ n: cards.length }} />
           </p>
         </div>
       </section>
@@ -56,55 +56,43 @@ export default async function SeriesPage({ params }: { params: Promise<{ slug: s
         <T zh={series.intro_zh} en={series.intro_en} />
       </p>
 
-      {first && (
-        <Link
-          href={`/series/${series.slug}/${first.chapter}`}
-          className="block rounded-md bg-seal py-3 text-center text-sm font-medium text-paper"
-        >
-          <T t={ui.startReading} />
-        </Link>
-      )}
-
       <section>
-        <h2 className="mb-2 border-b border-line pb-2 font-serif text-lg font-semibold text-ink">
-          <T t={ui.chapters} />
-        </h2>
-        <ul className="divide-y divide-line">
-          {chapters.map((c) => {
-            const level = chapterLevel(c.chapter);
-            const inner = (
-              <>
-                <span className="w-7 shrink-0 font-serif text-sm text-ink-soft">{String(c.chapter).padStart(2, "0")}</span>
-                <span className={`min-w-0 flex-1 truncate ${c.available ? "text-ink" : "text-ink-soft"}`}>
-                  <T zh={c.title_zh} en={c.title_en} />
-                </span>
-                <span className="flex shrink-0 gap-1">
-                  {!c.available && <Badge kind="soon" />}
-                  <Badge kind={level === "free" ? "free" : "basic"} />
-                </span>
-              </>
-            );
-            return (
-              <li key={c.chapter}>
-                {c.available ? (
-                  <Link href={`/series/${series.slug}/${c.chapter}`} className="flex items-center gap-3 py-3.5 active:bg-paper-deep">
-                    {inner}
-                  </Link>
-                ) : (
-                  <div className="flex items-center gap-3 py-3.5">{inner}</div>
-                )}
-              </li>
-            );
-          })}
-          {chapters.length < series.total_chapters && (
-            <li className="py-4 text-center text-xs text-ink-soft">
-              <T
-                zh={`其余 ${series.total_chapters - chapters.length} 章陆续更新`}
-                en={`${series.total_chapters - chapters.length} more chapters on the way`}
-              />
-            </li>
+        <h2 className="mb-3 flex items-baseline justify-between border-b border-line pb-2">
+          <span className="font-serif text-lg font-semibold text-ink">
+            <T t={ui.cards} />
+          </span>
+          {cards.length > 1 && (
+            <span className="text-xs text-ink-soft">
+              <T t={ui.latestFirst} />
+            </span>
           )}
-        </ul>
+        </h2>
+
+        {cards.length === 0 ? (
+          <p className="rounded-md border border-dashed border-line p-6 text-center text-sm text-ink-soft">
+            <T t={ui.noCards} />
+          </p>
+        ) : (
+          <ul className="space-y-3">
+            {newestFirst.map((c) => (
+              <li key={c.chapter}>
+                <Link
+                  href={`/series/${slug}/${c.chapter}`}
+                  className="block overflow-hidden rounded-md border border-line bg-white/50 active:bg-paper-deep"
+                >
+                  <div className="flex items-center justify-between gap-3 px-4 pt-3">
+                    <span className="truncate text-sm font-medium text-ink">
+                      <T zh={c.title_zh} en={c.title_en} />
+                    </span>
+                    <Badge kind={isFreeCard(c, cards) ? "free" : "member"} />
+                  </div>
+                  <p className="truncate px-4 pb-3 pt-2 font-serif text-lg text-ink">{c.original}</p>
+                  <div className="h-1.5 bg-navy" />
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
       </section>
     </div>
   );

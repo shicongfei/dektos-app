@@ -8,16 +8,28 @@
       "name_zh": "免费",
       "name_en": "Free",
       "monthly": 0,
-      "features_zh": ["每个系列前 2 章", "今日一句", "原文与英文译文"],
-      "features_en": ["First 2 chapters of every series", "Daily verse", "Original text & English translation"]
+      "features_zh": [
+        "每部经典最新一张对照卡片",
+        "今日一句"
+      ],
+      "features_en": [
+        "The latest parallel card of every classic",
+        "Daily verse"
+      ]
     },
     {
       "id": "basic",
       "name_zh": "基础会员",
       "name_en": "Basic",
       "monthly": 20,
-      "features_zh": ["全部系列所有章节", "课程视频", "原文与英文译文"],
-      "features_en": ["Every chapter of every series", "Course videos", "Original text & English translation"]
+      "features_zh": [
+        "全部对照卡片",
+        "课程视频"
+      ],
+      "features_en": [
+        "Every parallel card",
+        "Course videos"
+      ]
     },
     {
       "id": "advanced",
@@ -25,16 +37,32 @@
       "name_en": "Advanced",
       "monthly": 30,
       "highlight": true,
-      "features_zh": ["包含基础会员全部内容", "「圣经对读」全部解锁", "和合本 · KJV 对照经文"],
-      "features_en": ["Everything in Basic", "Full Bible Parallel readings", "CUV & KJV parallel verses"]
+      "features_zh": [
+        "包含基础会员全部内容",
+        "「圣经对读」全部解锁",
+        "和合本 · KJV 对照经文"
+      ],
+      "features_en": [
+        "Everything in Basic",
+        "Full Bible Parallel readings",
+        "CUV & KJV parallel verses"
+      ]
     },
     {
       "id": "all",
       "name_zh": "全通会员",
       "name_en": "All Access",
       "monthly": 50,
-      "features_zh": ["包含进阶会员全部内容", "每月线上答疑", "新系列抢先看"],
-      "features_en": ["Everything in Advanced", "Monthly live Q&A", "Early access to new series"]
+      "features_zh": [
+        "包含进阶会员全部内容",
+        "每月线上答疑",
+        "新系列抢先看"
+      ],
+      "features_en": [
+        "Everything in Advanced",
+        "Monthly live Q&A",
+        "Early access to new series"
+      ]
     }
   ]
 }
