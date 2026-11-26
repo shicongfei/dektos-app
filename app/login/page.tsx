@@ -4,15 +4,22 @@ import Link from "next/link";
 import { useState } from "react";
 import { ui } from "@/lib/i18n";
 import { T } from "@/components/T";
+import Image from "next/image";
+import { useLogo } from "@/components/Brand";
 import { Seal } from "@/components/Seal";
 
 export default function LoginPage() {
   const [submitted, setSubmitted] = useState(false);
+  const logo = useLogo();
 
   return (
     <div className="pt-6">
       <div className="mb-8 flex flex-col items-center gap-3">
-        <Seal size={64} />
+        {logo ? (
+          <Image src="/logo-full.png" alt="悦纳 DEKTOS" width={310} height={688} priority className="h-36 w-auto" />
+        ) : (
+          <Seal size={64} />
+        )}
         <h1 className="font-serif text-2xl font-bold text-ink">
           <T t={ui.loginTitle} />
         </h1>

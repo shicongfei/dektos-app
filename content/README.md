@@ -82,7 +82,11 @@ content/
 - 填错时构建会失败，Netlify 的部署日志会写明是哪个文件、哪个字段有问题。
 
 ## Logo 与颜色
-- Logo：把文件放在 `public/logo-seal.svg`（或 `public/logo-seal.png`），网站会自动用它代替文字印章。
+- Logo 和图标都放在仓库的 `public/` 文件夹（不是根目录）：
+  - `logo-seal.png`（或 `.svg`）：页首、卡片底部的印章，按原比例显示
+  - `logo-full.png`：印章加 DEKTOS，用在登录页
+  - `favicon-32.png`、`apple-touch-icon.png`、`icon-192.png`、`icon-512.png`：浏览器标签图标和「加到主屏幕」图标
+  - 要换图时，用同样的文件名上传到 `public/` 覆盖即可
 - 各书的子品牌名称在 `series/<书名>/series.json` 的 `brand_zh` / `brand_en`；颜色在 `app/globals.css` 开头。
 
 ## 修改价格

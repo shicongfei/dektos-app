@@ -2,11 +2,12 @@
 
 import { createContext, useContext } from "react";
 import { usePathname } from "next/navigation";
+import type { Logo } from "@/lib/logo";
 
-const LogoContext = createContext<string | null>(null);
+const LogoContext = createContext<Logo | null>(null);
 
 /** 根据网址决定主题色：/series/<book>/… 用该书的颜色，其余页面用印章红 */
-export function ThemeRoot({ logo, children }: { logo: string | null; children: React.ReactNode }) {
+export function ThemeRoot({ logo, children }: { logo: Logo | null; children: React.ReactNode }) {
   const pathname = usePathname() ?? "/";
   const book = pathname.match(/^\/series\/([^/]+)/)?.[1];
   return (
