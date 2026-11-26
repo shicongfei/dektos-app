@@ -28,7 +28,7 @@ export function CardFooter({ series }: { series: Series }) {
   const { lang } = useLang();
   return (
     <footer className="flex items-center gap-2.5 border-t border-line/70 px-5 py-3.5">
-      <Seal size={26} />
+      <Seal size={34} />
       <span className="font-serif text-[13px] font-semibold tracking-[0.12em] text-ink">
         {lang === "en" ? series.brand_en : series.brand_zh}
       </span>
