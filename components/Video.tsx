@@ -4,7 +4,8 @@ import { useRef, useState } from "react";
 import type { VideoInfo } from "@/lib/video";
 import { useLang } from "./LangProvider";
 
-/** 竖屏视频在页面里裁成 1:1，取景偏下（0 = 最上，100 = 最下），保住人像和字幕 */
+/** 竖屏视频在页面里裁成 11:10（参照 dektos.org 合成视频里人像框的比例），取景偏下（0 = 最上，100 = 最下），保住人像和字幕 */
+const PORTRAIT_RATIO = 1.1;
 const PORTRAIT_FOCUS = 66;
 
 function toEmbed(url: string) {
@@ -19,7 +20,7 @@ function Player({ v, title, focus }: { v: VideoInfo; title: string; focus: numbe
   const ref = useRef<HTMLVideoElement>(null);
   const [started, setStarted] = useState(false);
   const portrait = !!(v.width && v.height && v.height > v.width);
-  const ratio = portrait ? 1 : v.width && v.height ? v.width / v.height : 16 / 9;
+  const ratio = portrait ? PORTRAIT_RATIO : v.width && v.height ? v.width / v.height : 16 / 9;
   const fit = portrait ? "object-cover" : "object-contain";
   const position = portrait ? `50% ${focus}%` : "50% 50%";
 
@@ -94,7 +95,7 @@ export function Video({
   // 读出语言之前先只占位，免得先加载另一种语言的视频
   if (!ready) {
     const portrait = !!(v.width && v.height && v.height > v.width);
-    const ratio = portrait ? 1 : v.width && v.height ? v.width / v.height : 16 / 9;
+    const ratio = portrait ? PORTRAIT_RATIO : v.width && v.height ? v.width / v.height : 16 / 9;
     return <div className="w-full rounded-md bg-ink" style={{ aspectRatio: String(ratio) }} />;
   }
 
