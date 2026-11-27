@@ -25,6 +25,7 @@ type BaseCard = {
   title_en: string;
   video_zh: string;
   video_en: string;
+  video_focus: number | null; // 竖屏视频裁成 1:1 时的取景位置（0 = 最上，100 = 最下），留空用默认 66
 };
 
 /** 一般的对照卡片 */
@@ -199,6 +200,12 @@ function parseCard(file: string): Card {
     title_en: str(data, "title_en"),
     video_zh: str(data, "video_zh"),
     video_en: str(data, "video_en"),
+    video_focus: (() => {
+      const v = data.video_focus;
+      if (v === undefined || v === null || v === "") return null;
+      if (typeof v !== "number" || v < 0 || v > 100) fail("video_focus 必须是 0–100 的数字");
+      return v as number;
+    })(),
   };
 
   if (type === "hexagram") {
