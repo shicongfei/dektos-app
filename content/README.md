@@ -63,10 +63,10 @@ content/
 | 字段 | 说明 |
 |---|---|
 | `name_zh` | 卦名大字：`乾` |
-| `title_zh` / `title_en` | `乾为天` / `Qian · The Creative` |
-| `judgment_zh` / `judgment_en` | 标题后的卦辞：`元亨利贞` |
+| `title_zh` / `title_en` | `乾为天` / `Qian · Heaven` |
+| `judgment_zh` / `judgment_en` | 卦辞：中文接在标题后（`元亨利贞`），英文在标题下以斜体显示 |
 | `short_en` | 对读卡卦象下的英文名：`Qian · Heaven` |
-| `upper_zh` / `upper_en`、`lower_zh` / `lower_en` | 上卦、下卦：`乾` / `Heaven`（显示为「上乾下乾」「Heaven above Heaven」） |
+| `upper_zh` / `lower_zh` | 上卦、下卦：`乾`（中文显示为「上乾下乾」）；`upper_en` / `lower_en` 目前不显示 |
 | `summary_zh` / `summary_en` | `六爻 × 九张对读` |
 | `lines` | 六爻，**自下而上**正好 6 个：`name_zh`、`name_en`、`text_zh`、`text_en`、`card`（对读卡的张号；对应多张时写 `[4, 8]`） |
 | `see_also` | 另见：`label_zh`、`label_en`、`text_zh`、`text_en`、`card` |

@@ -64,15 +64,29 @@ export function HexagramView({ card, series, available }: { card: HexagramCard; 
       <section className="flex items-center gap-4 px-5 pt-4">
         <span className="font-serif text-[64px] font-bold leading-none text-ink">{card.name_zh}</span>
         <div className="min-w-0 flex-1">
-          <p className="font-serif text-[17px] font-bold leading-snug text-ink">
-            {en ? card.title_en : `${card.title_zh}${card.judgment_zh ? ` · ${card.judgment_zh}` : ""}`}
-          </p>
-          <p className="mt-0.5 text-[13px] text-ink-soft">
-            {en
-              ? `Hexagram ${card.chapter} · ${card.upper_en} above ${card.lower_en}`
-              : `第${cn(card.chapter)}卦 · 上${card.upper_zh}下${card.lower_zh}`}
-          </p>
-          <p className="text-[13px] text-ink-soft">{en ? card.summary_en : card.summary_zh}</p>
+          {en ? (
+            <>
+              <p className="font-serif text-[17px] font-bold leading-snug text-ink">{card.title_en}</p>
+              {card.judgment_en && (
+                <p className="mt-0.5 font-serif text-[13px] italic leading-snug text-ink-soft">{card.judgment_en}</p>
+              )}
+              <p className="mt-0.5 text-[13px] text-ink-soft">
+                Hexagram {card.chapter}
+                {card.summary_en ? ` · ${card.summary_en}` : ""}
+              </p>
+            </>
+          ) : (
+            <>
+              <p className="font-serif text-[17px] font-bold leading-snug text-ink">
+                {card.title_zh}
+                {card.judgment_zh ? ` · ${card.judgment_zh}` : ""}
+              </p>
+              <p className="mt-0.5 text-[13px] text-ink-soft">
+                第{cn(card.chapter)}卦 · 上{card.upper_zh}下{card.lower_zh}
+              </p>
+              <p className="text-[13px] text-ink-soft">{card.summary_zh}</p>
+            </>
+          )}
         </div>
         <Taiji />
       </section>
