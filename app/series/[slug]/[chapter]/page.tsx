@@ -6,6 +6,7 @@ import { ui } from "@/lib/i18n";
 import { T } from "@/components/T";
 import { Badge } from "@/components/Badge";
 import { Video } from "@/components/Video";
+import { resolveVideo } from "@/lib/video";
 import { CardView } from "@/components/CardView";
 import { HexagramView } from "@/components/HexagramView";
 
@@ -42,7 +43,11 @@ export default async function CardPage({ params }: { params: Params }) {
         ← <T zh={series.title_zh} en={series.title_en} /> · <T t={ui.backToSeries} />
       </Link>
 
-      <Video zh={card.video_zh} en={card.video_en} title={card.title_en} />
+      <Video
+        zh={resolveVideo(card.video_zh, `${slug}/${card.slug} 的 video_zh`)}
+        en={resolveVideo(card.video_en, `${slug}/${card.slug} 的 video_en`)}
+        title={card.title_zh}
+      />
 
       <header className="flex items-start justify-between gap-3">
         <h1 className="font-serif text-2xl font-bold leading-snug text-ink">

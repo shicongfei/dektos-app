@@ -39,7 +39,7 @@ content/
 | `point_zh` / `point_en` | 「对读点」小字（可留空） |
 | `highlight_lines` | 易经：右侧卦象要标色的爻，例如 `[1, 5, 6]`（自下而上） |
 | `lines_label_zh` / `lines_label_en` | 易经：卦象下的说明，例如 `初 · 五 · 上`（留空就显示卦名） |
-| `video_zh` / `video_en` | 视频网址（YouTube、Vimeo 或 mp4），留空显示占位 |
+| `video_zh` / `video_en` | 视频，见下方「视频」。留空 `""` 就不显示播放器 |
 
 ### 经文 `scripture`
 
@@ -73,6 +73,21 @@ content/
 | `note_zh` / `note_en` | 「注」 |
 
 阴爻、阳爻由爻名自动判断：含「九」画成整条，含「六」画成中间断开。点编号会跳到同一卦里那一张对读卡；还没建立的编号显示为灰色。
+
+## 视频
+
+把 mp4 放进仓库的 `public/videos/`，卡片里填路径（以 `/videos/` 开头）：
+
+```json
+"video_zh": "/videos/ddj-01-zh.mp4",
+"video_en": "/videos/ddj-01-en.mp4"
+```
+
+- 封面：同一个文件夹里放同名的 `.jpg`（例如 `ddj-01-zh.jpg`），会自动当作封面
+- 中文界面播放 `video_zh`，英文界面播放 `video_en`；只填一种时两种界面都播放那一个
+- 也可以填 YouTube 或 Vimeo 网址
+- 路径写错（文件不存在）时构建会失败，Netlify 部署日志会写明是哪张卡片
+- 建议格式：H.264 + AAC 的 mp4（手机都能播）。GitHub 网页上传单个文件最大 25 MB
 
 ## 规则
 - 同一部经典里，排在最后的那张（章号、张号最大）= 最新一张，标「免费」；其余标「会员」。

@@ -42,7 +42,6 @@ export const ui = {
     zh: "英文译文（James Legge 译本）即将补上。",
     en: "James Legge's translation will be added soon.",
   },
-  videoPending: { zh: "课程视频即将上线", en: "Video coming soon" },
   viewPlans: { zh: "查看会员方案", en: "View plans" },
   prev: { zh: "上一章", en: "Previous" },
   next: { zh: "下一章", en: "Next" },
