@@ -47,6 +47,7 @@ export default async function CardPage({ params }: { params: Params }) {
         zh={resolveVideo(card.video_zh, `${slug}/${card.slug} 的 video_zh`)}
         en={resolveVideo(card.video_en, `${slug}/${card.slug} 的 video_en`)}
         title={card.title_zh}
+        focus={card.video_focus ?? undefined}
       />
 
       <header className="flex items-start justify-between gap-3">
