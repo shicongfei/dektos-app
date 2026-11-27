@@ -16,11 +16,11 @@ function toEmbed(url: string) {
   return null;
 }
 
-function Player({ v, title, focus }: { v: VideoInfo; title: string; focus: number }) {
+function Player({ v, title, focus, portraitRatio }: { v: VideoInfo; title: string; focus: number; portraitRatio: number }) {
   const ref = useRef<HTMLVideoElement>(null);
   const [started, setStarted] = useState(false);
   const portrait = !!(v.width && v.height && v.height > v.width);
-  const ratio = portrait ? PORTRAIT_RATIO : v.width && v.height ? v.width / v.height : 16 / 9;
+  const ratio = portrait ? portraitRatio : v.width && v.height ? v.width / v.height : 16 / 9;
   const fit = portrait ? "object-cover" : "object-contain";
   const position = portrait ? `50% ${focus}%` : "50% 50%";
 
@@ -73,11 +73,13 @@ export function Video({
   en,
   title,
   focus = PORTRAIT_FOCUS,
+  ratio: portraitRatio = PORTRAIT_RATIO,
 }: {
   zh: VideoInfo | null;
   en: VideoInfo | null;
   title: string;
   focus?: number;
+  ratio?: number;
 }) {
   const { lang, ready } = useLang();
   const v = lang === "en" ? en ?? zh : zh ?? en;
@@ -95,10 +97,10 @@ export function Video({
   // 读出语言之前先只占位，免得先加载另一种语言的视频
   if (!ready) {
     const portrait = !!(v.width && v.height && v.height > v.width);
-    const ratio = portrait ? PORTRAIT_RATIO : v.width && v.height ? v.width / v.height : 16 / 9;
+    const ratio = portrait ? portraitRatio : v.width && v.height ? v.width / v.height : 16 / 9;
     return <div className="w-full rounded-md bg-ink" style={{ aspectRatio: String(ratio) }} />;
   }
 
   // key：切换语言时换成新的播放器，原来的视频随之停止
-  return <Player key={v.src} v={v} title={title} focus={focus} />;
+  return <Player key={v.src} v={v} title={title} focus={focus} portraitRatio={portraitRatio} />;
 }
