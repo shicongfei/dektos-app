@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getAllSeries, getCard, getCards, getSeries } from "@/lib/content";
+import { getAllSeries, getCard, getCards, getHexagram, getSeries } from "@/lib/content";
 import { isFreeCard, PREVIEW_MODE } from "@/lib/access";
 import { ui } from "@/lib/i18n";
 import { T } from "@/components/T";
@@ -14,24 +14,24 @@ type Params = Promise<{ slug: string; chapter: string }>;
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return getAllSeries().flatMap((s) => getCards(s.slug).map((c) => ({ slug: s.slug, chapter: String(c.no) })));
+  return getAllSeries().flatMap((s) => getCards(s.slug).map((c) => ({ slug: s.slug, chapter: c.slug })));
 }
 
 export async function generateMetadata({ params }: { params: Params }) {
   const { slug, chapter } = await params;
   const s = getSeries(slug);
-  const c = getCard(slug, Number(chapter));
+  const c = getCard(slug, chapter);
   return { title: s && c ? `${s.title_zh} ${c.title_zh} · 悦纳 Dektos` : "悦纳 Dektos" };
 }
 
 export default async function CardPage({ params }: { params: Params }) {
   const { slug, chapter: chapterParam } = await params;
   const series = getSeries(slug);
-  const card = getCard(slug, Number(chapterParam));
+  const card = getCard(slug, chapterParam);
   if (!series || !card) notFound();
 
   const all = getCards(slug);
-  const idx = all.findIndex((c) => c.no === card.no);
+  const idx = all.findIndex((c) => c.slug === card.slug);
   const prev = all[idx - 1];
   const next = all[idx + 1];
   const free = isFreeCard(card, all);
@@ -63,14 +63,14 @@ export default async function CardPage({ params }: { params: Params }) {
       )}
 
       {card.type === "hexagram" ? (
-        <HexagramView card={card} series={series} available={all.map((c) => c.no)} />
+        <HexagramView card={card} series={series} available={all.map((c) => c.slug)} />
       ) : (
-        <CardView card={card} series={series} />
+        <CardView card={card} series={series} hexagram={slug === "yijing" ? getHexagram(card.chapter) : null} />
       )}
 
       <nav className="grid grid-cols-2 gap-3 border-t border-line pt-5 text-sm">
         {prev ? (
-          <Link href={`/series/${slug}/${prev.no}`} className="rounded-md border border-line p-3 text-ink">
+          <Link href={`/series/${slug}/${prev.slug}`} className="rounded-md border border-line p-3 text-ink">
             <div className="text-xs text-ink-soft">
               ← <T t={ui.prev} />
             </div>
@@ -82,7 +82,7 @@ export default async function CardPage({ params }: { params: Params }) {
           <span />
         )}
         {next ? (
-          <Link href={`/series/${slug}/${next.no}`} className="rounded-md border border-line p-3 text-right text-ink">
+          <Link href={`/series/${slug}/${next.slug}`} className="rounded-md border border-line p-3 text-right text-ink">
             <div className="text-xs text-ink-soft">
               <T t={ui.next} /> →
             </div>

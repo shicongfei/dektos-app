@@ -1,0 +1,100 @@
+{
+  "type": "hexagram",
+  "book": "yijing",
+  "chapter": 1,
+  "series_index": 1,
+  "series_total": 10,
+  "name_zh": "乾",
+  "title_zh": "乾为天",
+  "title_en": "Qian · The Creative",
+  "short_en": "Qian · Heaven",
+  "judgment_zh": "元亨利贞",
+  "judgment_en": "",
+  "upper_zh": "乾",
+  "upper_en": "Heaven",
+  "lower_zh": "乾",
+  "lower_en": "Heaven",
+  "summary_zh": "六爻 × 九张对读",
+  "summary_en": "Six lines, nine readings",
+  "lines": [
+    {
+      "name_zh": "初九",
+      "name_en": "Line 1",
+      "text_zh": "潜龙勿用。",
+      "text_en": "The dragon lying hid in the deep.",
+      "card": 4
+    },
+    {
+      "name_zh": "九二",
+      "name_en": "Line 2",
+      "text_zh": "见龙在田，利见大人。",
+      "text_en": "The dragon appearing in the field.",
+      "card": 5
+    },
+    {
+      "name_zh": "九三",
+      "name_en": "Line 3",
+      "text_zh": "君子终日乾乾，夕惕若厉，无咎。",
+      "text_en": "Active and vigilant all the day.",
+      "card": 6
+    },
+    {
+      "name_zh": "九四",
+      "name_en": "Line 4",
+      "text_zh": "或跃在渊，无咎。",
+      "text_en": "As if leaping up, but still in the deep.",
+      "card": 7
+    },
+    {
+      "name_zh": "九五",
+      "name_en": "Line 5",
+      "text_zh": "飞龙在天，利见大人。",
+      "text_en": "The dragon on the wing in the sky.",
+      "card": 4
+    },
+    {
+      "name_zh": "上九",
+      "name_en": "Line 6",
+      "text_zh": "亢龙有悔。",
+      "text_en": "The dragon exceeding the proper limits.",
+      "card": [
+        4,
+        8
+      ]
+    }
+  ],
+  "see_also": [
+    {
+      "label_zh": "用九",
+      "label_en": "All Nines",
+      "text_zh": "见群龙无首，吉。",
+      "text_en": "The host of dragons without their heads.",
+      "card": 9
+    },
+    {
+      "label_zh": "彖传",
+      "label_en": "Tuan",
+      "text_zh": "大哉乾元，万物资始。",
+      "text_en": "All things owe to it their beginning.",
+      "card": 2
+    },
+    {
+      "label_zh": "大象",
+      "label_en": "Image",
+      "text_zh": "天行健，君子以自强不息。",
+      "text_en": "Heaven, in its motion, gives the idea of strength.",
+      "card": 3
+    },
+    {
+      "label_zh": "说卦",
+      "label_en": "Shuogua",
+      "text_zh": "乾，天也，故称乎父。",
+      "text_en": "Qian is heaven, and hence is styled father.",
+      "card": 10
+    }
+  ],
+  "note_zh": "乾卦中的龙是阳刚、君子、圣王的象征。",
+  "note_en": "In Qian, the dragon symbolizes yang strength, the noble person and the sage-king.",
+  "video_zh": "",
+  "video_en": ""
+}

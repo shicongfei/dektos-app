@@ -6,6 +6,7 @@ import { ui } from "@/lib/i18n";
 import { T } from "@/components/T";
 import { Badge } from "@/components/Badge";
 import { plain } from "@/components/Rich";
+import { cn } from "@/lib/numerals";
 
 export const dynamicParams = false;
 
@@ -76,14 +77,21 @@ export default async function SeriesPage({ params }: { params: Promise<{ slug: s
         ) : (
           <ul className="space-y-3">
             {newestFirst.map((c) => (
-              <li key={c.no}>
+              <li key={c.slug}>
                 <Link
-                  href={`/series/${slug}/${c.no}`}
+                  href={`/series/${slug}/${c.slug}`}
                   className="block overflow-hidden rounded-md border border-line bg-white/50 active:bg-paper-deep"
                 >
                   <div className="flex items-center justify-between gap-3 px-4 pt-3">
                     <span className="truncate text-sm font-medium text-ink">
-                      <T zh={c.title_zh} en={c.title_en} />
+                      {c.series_index ? (
+                        <T
+                          zh={`第${cn(c.chapter)}${series.unit_zh} · ${c.title_zh}`}
+                          en={`${series.unit_en} ${c.chapter} · ${c.title_en}`}
+                        />
+                      ) : (
+                        <T zh={c.title_zh} en={c.title_en} />
+                      )}
                       {c.series_index && c.series_total ? (
                         <span className="ml-2 font-serif text-xs text-accent">
                           {c.series_index} / {c.series_total}
@@ -93,7 +101,7 @@ export default async function SeriesPage({ params }: { params: Promise<{ slug: s
                     <Badge kind={isFreeCard(c, cards) ? "free" : "member"} />
                   </div>
                   <p className="truncate px-4 pb-3 pt-2 font-serif text-lg text-ink">
-                    {c.type === "hexagram" ? `${c.name_zh} · ${plain(c.judgment_zh)}` : plain(c.original)}
+                    {c.type === "hexagram" ? `${c.title_zh}${c.judgment_zh ? ` · ${c.judgment_zh}` : ""}` : plain(c.original)}
                   </p>
                   <div className="h-1.5 bg-accent" />
                 </Link>

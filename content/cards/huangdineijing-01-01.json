@@ -1,0 +1,43 @@
+{
+  "book": "huangdineijing",
+  "chapter": 1,
+  "series_index": 1,
+  "series_total": 7,
+  "title_zh": "时世异耶",
+  "title_en": "The Times",
+  "source_zh": "上古天真论 · 一、时世异耶",
+  "source_en": "Shanggu Tianzhen Lun · I. Have the Times Changed?",
+  "original": "上古之人，春秋皆**度百岁**；今时之人，年**半百而衰**。时世异耶？人将**失之**耶？",
+  "vernacular_zh": "上古的人都活过百岁，今人五十岁就衰老；是时代变了，还是人自己把“道”丢了？",
+  "translation_en": "People in high antiquity all lived **past a hundred years;** people today **decline at fifty.** Have the times changed, or have people **lost the Way?**",
+  "scripture": [
+    {
+      "text_zh": "亚当共活了**九百三十**岁……",
+      "text_en": "",
+      "ref_zh": "创世记 5:5",
+      "ref_en": ""
+    },
+    {
+      "text_zh": "……他的日子还可到**一百二十**年。",
+      "text_en": "",
+      "ref_zh": "创世记 6:3",
+      "ref_en": ""
+    },
+    {
+      "text_zh": "我们一生的年日是**七十**岁……",
+      "text_en": "",
+      "ref_zh": "诗篇 90:10",
+      "ref_en": ""
+    },
+    {
+      "text_zh": "若因一人的过犯，死就因这一人**作了王**……",
+      "text_en": "For if by one man's offence **death reigned** by one;\nmuch more they which receive abundance of grace\nand of the gift of righteousness\nshall **reign in life** by one, Jesus Christ.",
+      "ref_zh": "罗马书 5:17",
+      "ref_en": "Romans 5:17"
+    }
+  ],
+  "insight_zh": "岐伯：衰老**因失道**而至；保罗：死**因罪**进入世界。",
+  "insight_en": "Qibo: decline comes from **losing the Way**; Paul: by one man's offence **death reigned**.",
+  "video_zh": "",
+  "video_en": ""
+}

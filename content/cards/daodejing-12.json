@@ -1,0 +1,23 @@
+{
+  "book": "daodejing",
+  "chapter": 12,
+  "series_index": 12,
+  "series_total": 81,
+  "title_zh": "第十二章",
+  "title_en": "Chapter 12",
+  "original": "五色令人**目盲**；五音令人**耳聋**。",
+  "vernacular_zh": "缤纷的色彩使人眼花，繁杂的声音使人耳聋。",
+  "translation_en": "Colour's five hues from th' eyes their sight will take;\nMusic's five notes the ears as deaf can make.",
+  "scripture": [
+    {
+      "text_zh": "万事令人厌烦，人不能说尽。眼看，看不饱；耳听，听不足。",
+      "text_en": "All things are full of labour; man cannot utter it: the eye is not satisfied with seeing, nor the ear filled with hearing.",
+      "ref_zh": "传道书 1:8",
+      "ref_en": "Ecclesiastes 1:8"
+    }
+  ],
+  "insight_zh": "老子：看得太多，**反而目盲**；所罗门：看得再多，**总是不饱**。",
+  "insight_en": "Laozi: seeing too much, **the eye goes blind**. Solomon: seeing ever more, **never satisfied**.",
+  "video_zh": "",
+  "video_en": ""
+}

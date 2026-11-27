@@ -1,0 +1,32 @@
+{
+  "book": "yijing",
+  "chapter": 1,
+  "series_index": 8,
+  "series_total": 10,
+  "title_zh": "亢龙有悔",
+  "title_en": "The Overreaching Dragon",
+  "source_zh": "上九 · 文言传",
+  "source_en": "Line 6 · Wenyan",
+  "highlight_lines": [
+    6
+  ],
+  "lines_label_zh": "上九",
+  "lines_label_en": "Line 6",
+  "original": "**亢龙有悔**。知进而**不知退**。",
+  "vernacular_zh": "龙飞到过高之处，必有悔恨。“亢”就是只知进、不知退。",
+  "translation_en": "The dragon exceeding the proper limits. There will be occasion for repentance. That phrase indicates the knowing to advance but not to retire.",
+  "scripture": [
+    {
+      "text_zh": "因为，凡自高的，必降为卑；自卑的，必升为高。",
+      "text_en": "For whosoever exalteth himself shall be abased; and he that humbleth himself shall be exalted.",
+      "ref_zh": "路加福音 14:11",
+      "ref_en": "Luke 14:11"
+    }
+  ],
+  "note_zh": "乾卦中的龙是阳刚、君子、圣王的象征。",
+  "note_en": "In Qian, the dragon symbolizes yang strength, the noble person and the sage-king.",
+  "insight_zh": "易经：物极必反，**盛极则衰**；耶稣：神降骄傲，**高举谦卑**。",
+  "insight_en": "I Ching: whatever peaks **must fall**. Jesus: the proud fall, **the humble rise**.",
+  "video_zh": "",
+  "video_en": ""
+}
