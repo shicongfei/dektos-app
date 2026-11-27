@@ -1,0 +1,32 @@
+{
+  "book": "yijing",
+  "chapter": 2,
+  "series_index": 4,
+  "series_total": 10,
+  "title_zh": "履霜坚冰",
+  "title_en": "Frost Before Ice",
+  "source_zh": "初六",
+  "source_en": "Line 1",
+  "highlight_lines": [
+    1
+  ],
+  "lines_label_zh": "初六",
+  "lines_label_en": "Line 1",
+  "original": "**履霜**，坚冰至。",
+  "vernacular_zh": "脚下踩到了霜，就知道坚硬的冰雪快要来了。",
+  "translation_en": "Treading on hoarfrost. The strong ice will come (by and by).",
+  "scripture": [
+    {
+      "text_zh": "你们可以从无花果树学个比方：当树枝发嫩长叶的时候，你们就知道夏天近了。",
+      "text_en": "Now learn a parable of the fig tree; When his branch is yet tender, and putteth forth leaves, ye know that summer is nigh.",
+      "ref_zh": "马太福音 24:32",
+      "ref_en": "Matthew 24:32"
+    }
+  ],
+  "insight_zh": "易经：履霜而知**坚冰将至**；耶稣：见树发嫩长叶，而知**夏天已近**。",
+  "insight_en": "I Ching: frost underfoot, **hard ice is near**. Jesus: the fig tree leafs, **summer is near**.",
+  "point_zh": "从细微征兆辨认趋势，在结果完全显现之前保持觉察。",
+  "point_en": "read the small signs of a trend; stay alert before the outcome fully shows.",
+  "video_zh": "",
+  "video_en": ""
+}

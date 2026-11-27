@@ -1,0 +1,34 @@
+{
+  "book": "yijing",
+  "chapter": 1,
+  "series_index": 4,
+  "series_total": 10,
+  "title_zh": "一升一降",
+  "title_en": "Rising and Descending",
+  "source_zh": "爻辞",
+  "source_en": "Lines 1, 5 & 6",
+  "highlight_lines": [
+    1,
+    5,
+    6
+  ],
+  "lines_label_zh": "初 · 五 · 上",
+  "lines_label_en": "Lines 1 · 5 · 6",
+  "original": "**潜龙**勿用，**飞龙**在天，**亢龙**有悔。",
+  "vernacular_zh": "龙先潜藏不动，后飞腾在天；飞到极高之处，便有悔恨。",
+  "translation_en": "The dragon lying hid (in the deep) ... the dragon on the wing in the sky ... the dragon exceeding the proper limits. There will be occasion for repentance.",
+  "scripture": [
+    {
+      "text_zh": "反倒虚己，取了奴仆的形像……所以神将他升为至高。",
+      "text_en": "But made himself of no reputation, and took upon him the form of a servant... Wherefore God also hath highly exalted him.",
+      "ref_zh": "腓立比书 2:7-9",
+      "ref_en": "Philippians 2:7-9"
+    }
+  ],
+  "note_zh": "乾卦中的龙是阳刚、君子、圣王的象征。",
+  "note_en": "In Qian, the dragon symbolizes yang strength, the noble person and the sage-king.",
+  "insight_zh": "乾卦：由下而上，**到顶有悔**；基督：由上而下，**降卑得升**。",
+  "insight_en": "Qian: rising from below, **regret at the peak**. Christ: stooping low, **exalted by God**.",
+  "video_zh": "",
+  "video_en": ""
+}

@@ -1,0 +1,97 @@
+{
+  "type": "hexagram",
+  "book": "yijing",
+  "chapter": 2,
+  "series_index": 1,
+  "series_total": 10,
+  "name_zh": "坤",
+  "title_zh": "坤为地",
+  "title_en": "Kun · The Receptive",
+  "short_en": "Kun · Earth",
+  "judgment_zh": "厚德载物",
+  "judgment_en": "",
+  "upper_zh": "坤",
+  "upper_en": "Earth",
+  "lower_zh": "坤",
+  "lower_en": "Earth",
+  "summary_zh": "六爻 × 九张对读",
+  "summary_en": "Six lines, nine readings",
+  "lines": [
+    {
+      "name_zh": "初六",
+      "name_en": "Line 1",
+      "text_zh": "履霜，坚冰至。",
+      "text_en": "Treading on hoarfrost.",
+      "card": 4
+    },
+    {
+      "name_zh": "六二",
+      "name_en": "Line 2",
+      "text_zh": "直方大，不习无不利。",
+      "text_en": "Straight, square, and great.",
+      "card": 5
+    },
+    {
+      "name_zh": "六三",
+      "name_en": "Line 3",
+      "text_zh": "含章可贞。",
+      "text_en": "Keeping his excellence under restraint.",
+      "card": 6
+    },
+    {
+      "name_zh": "六四",
+      "name_en": "Line 4",
+      "text_zh": "括囊，无咎无誉。",
+      "text_en": "A sack tied up.",
+      "card": 6
+    },
+    {
+      "name_zh": "六五",
+      "name_en": "Line 5",
+      "text_zh": "黄裳，元吉。",
+      "text_en": "The yellow lower garment.",
+      "card": 7
+    },
+    {
+      "name_zh": "上六",
+      "name_en": "Line 6",
+      "text_zh": "龙战于野，其血玄黄。",
+      "text_en": "Dragons fighting in the wild.",
+      "card": 8
+    }
+  ],
+  "see_also": [
+    {
+      "label_zh": "用六",
+      "label_en": "All Sixes",
+      "text_zh": "利永贞。",
+      "text_en": "Perpetually correct and firm.",
+      "card": 9
+    },
+    {
+      "label_zh": "彖传",
+      "label_en": "Tuan",
+      "text_zh": "至哉坤元，万物资生。",
+      "text_en": "All things owe to it their birth.",
+      "card": 2
+    },
+    {
+      "label_zh": "大象",
+      "label_en": "Image",
+      "text_zh": "地势坤，君子以厚德载物。",
+      "text_en": "With his large virtue supports things.",
+      "card": 3
+    },
+    {
+      "label_zh": "说卦",
+      "label_en": "Shuogua",
+      "text_zh": "坤，地也，故称乎母。",
+      "text_en": "Kun is earth, and hence is styled mother.",
+      "card": 10
+    }
+  ],
+  "note_zh": "上六“龙战于野”，比喻阴阳相争、两败俱伤。",
+  "note_en": "Line 6: warring dragons, yin and yang in conflict.",
+  "video_zh": "",
+  "video_en": ""
+}

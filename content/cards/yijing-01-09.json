@@ -1,0 +1,37 @@
+{
+  "book": "yijing",
+  "chapter": 1,
+  "series_index": 9,
+  "series_total": 10,
+  "title_zh": "群龙无首",
+  "title_en": "Dragons Without a Head",
+  "source_zh": "用九",
+  "source_en": "All Nines",
+  "highlight_lines": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "lines_label_zh": "用九",
+  "lines_label_en": "All Nines",
+  "original": "见**群龙无首**，吉。",
+  "vernacular_zh": "群龙都刚健有力，却没有一条争着做首领，这是吉祥的。",
+  "translation_en": "If the host of dragons (thus) appearing were to divest themselves of their heads, there would be good fortune.",
+  "scripture": [
+    {
+      "text_zh": "在你们中间，谁愿为首，就必作众人的仆人。因为人子来，并不是要受人的服事，乃是要服事人。",
+      "text_en": "And whosoever of you will be the chiefest, shall be servant of all. For even the Son of man came not to be ministered unto, but to minister.",
+      "ref_zh": "马可福音 10:44-45",
+      "ref_en": "Mark 10:44-45"
+    }
+  ],
+  "note_zh": "乾卦中的龙是阳刚、君子、圣王的象征。",
+  "note_en": "In Qian, the dragon symbolizes yang strength, the noble person and the sage-king.",
+  "insight_zh": "易经：不争为首，**无首则吉**；耶稣：甘作仆人，**反为元首**。",
+  "insight_en": "I Ching: none contends to lead, **and it is good**. Jesus: the servant of all **becomes the Head**.",
+  "video_zh": "",
+  "video_en": ""
+}

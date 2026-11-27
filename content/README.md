@@ -14,67 +14,69 @@ content/
 └── membership.json         会员方案、价格、权益
 ```
 
-## 新增一张对照卡片
+## 卡片文件
 
-复制 `cards/daodejing-01.json`，改个文件名（例如 `daodejing-02.json`），再修改内容：
+每张卡片是 `cards/` 里的一个 JSON 文件。文件名只是方便你找，网站只看文件里的内容：
+
+- 道德经：`daodejing-05.json`，网址 `/series/daodejing/5`（章号）
+- 易经、黄帝内经：一卦 / 一篇有多张卡片，网址用「章号-张号」，例如 `yijing-01-04.json` → `/series/yijing/1-4`
+
+### 一般卡片的字段
 
 | 字段 | 说明 |
 |---|---|
-| `book` | `daodejing`（道德经）/ `yijing`（易经）/ `huangdineijing`（黄帝内经） |
-| `chapter` | 第几章 / 第几卦 / 第几篇，数字，不加引号 |
-| `no` | 卡片编号（可省略，省略时等于 `chapter`）。同一部经典里不能重复，网址就是 `/series/书名/编号`。易经一卦有多张卡片时必须填 |
-| `series_index` / `series_total` | 显示在卡片右上角的「1 / 81」「1 / 7」，可省略 |
+| `book` | `daodejing` / `yijing` / `huangdineijing` |
+| `chapter` | 第几章 / 第几卦 / 第几篇 |
+| `series_index` / `series_total` | 卡片右上角的「1 / 81」「04 / 10」。易经和黄帝内经**必填**（这一卦 / 这一篇的第几张、共几张） |
 | `title_zh` / `title_en` | 卡片标题 |
-| `original` | 原文，重点字用 `**双星号**` 标出 |
-| `vernacular_zh` | 白话（中文界面，显示在注释框里） |
-| `translation_en` | James Legge 英译（英文界面） |
+| `source_zh` / `source_en` | 原文出处，显示在「原文 ·」后面，例如 `彖传`、`上古天真论 · 一、时世异耶`（可留空） |
+| `original` | 原文，重点字用 `**双星号**` |
+| `vernacular_zh` | 白话（中文界面） |
+| `translation_en` | 英译（英文界面）。要换行就写 `\n` |
 | `scripture` | 圣经经文，可放多节，见下方 |
-| `insight_zh` / `insight_en` | 对照点睛，重点字用 `**双星号**`。中文按「；」分行，英文按句号分行 |
-| `video_zh` / `video_en` | 视频网址（YouTube、Vimeo 或 mp4），留空 `""` 显示占位 |
+| `insight_zh` / `insight_en` | 对照点睛。中文按「；」分行；英文在「人名:」前分行；要自己决定换行就写 `\n` |
+| `note_zh` / `note_en` | 「注」框（可留空） |
+| `point_zh` / `point_en` | 「对读点」小字（可留空） |
+| `highlight_lines` | 易经：右侧卦象要标色的爻，例如 `[1, 5, 6]`（自下而上） |
+| `lines_label_zh` / `lines_label_en` | 易经：卦象下的说明，例如 `初 · 五 · 上`（留空就显示卦名） |
+| `video_zh` / `video_en` | 视频网址（YouTube、Vimeo 或 mp4），留空显示占位 |
 
-`scripture` 的写法（每节一组 `{ }`，组与组之间用逗号）：
+### 经文 `scripture`
+
+每节一组 `{ }`。中文卡片和英文卡片引用的经节不一样时，没有的那种语言留空 `""`，网站在该语言下就不显示那一节：
 
 ```json
 "scripture": [
-  {
-    "text_zh": "你们的身子就是**圣灵的殿**。",
-    "text_en": "Your body is the **temple of the Holy Ghost**.",
-    "ref_zh": "哥林多前书 6:19",
-    "ref_en": "1 Corinthians 6:19"
-  },
-  {
-    "text_zh": "当守安息日，守为圣日。",
-    "text_en": "Remember the sabbath day, to keep it holy.",
-    "ref_zh": "出埃及记 20:8",
-    "ref_en": "Exodus 20:8"
-  }
+  { "text_zh": "亚当共活了**九百三十**岁……", "text_en": "", "ref_zh": "创世记 5:5", "ref_en": "" },
+  { "text_zh": "若因一人的过犯，死就因这一人**作了王**……",
+    "text_en": "For if by one man's offence **death reigned** by one;\nmuch more they ...",
+    "ref_zh": "罗马书 5:17", "ref_en": "Romans 5:17" }
 ]
 ```
 
-圣经色块里的 `**重点字**`：黄帝内经显示为金色，道德经和易经显示为粗体白字。
+圣经色块里的 `**重点字**`：黄帝内经显示为金色，道德经、易经显示为粗体白字。
 
-## 易经：卦的总览卡
+### 易经：卦的总览卡
 
-每一卦一张总览卡，`"type": "hexagram"`，参考 `cards/yijing-01-qian.json`：
+每一卦一张，`"type": "hexagram"`，`series_index` 为 1。参考 `cards/yijing-01-01.json`：
 
 | 字段 | 说明 |
 |---|---|
-| `type` | 固定写 `"hexagram"` |
-| `chapter` / `no` | 第几卦 / 这张总览卡的编号 |
-| `name_zh` / `name_en` | 卦名 |
-| `judgment_zh` / `judgment_en` | 卦辞（`judgment_en` 放 Legge 译文） |
-| `upper_zh` / `upper_en`、`lower_zh` / `lower_en` | 上卦、下卦，例如 `"乾 ☰ 天"` |
-| `lines` | 六爻，**自下而上**正好 6 个：`name_zh`（初九、六二……）、`name_en`、`text_zh`（爻辞）、`text_en`、`card`（对应对读卡的编号） |
-| `see_also` | 另见：`label_zh`、`label_en`、`card`（例如用九、彖传、大象、说卦） |
+| `name_zh` | 卦名大字：`乾` |
+| `title_zh` / `title_en` | `乾为天` / `Qian · The Creative` |
+| `judgment_zh` / `judgment_en` | 标题后的卦辞：`元亨利贞` |
+| `short_en` | 对读卡卦象下的英文名：`Qian · Heaven` |
+| `upper_zh` / `upper_en`、`lower_zh` / `lower_en` | 上卦、下卦：`乾` / `Heaven`（显示为「上乾下乾」「Heaven above Heaven」） |
+| `summary_zh` / `summary_en` | `六爻 × 九张对读` |
+| `lines` | 六爻，**自下而上**正好 6 个：`name_zh`、`name_en`、`text_zh`、`text_en`、`card`（对读卡的张号；对应多张时写 `[4, 8]`） |
+| `see_also` | 另见：`label_zh`、`label_en`、`text_zh`、`text_en`、`card` |
+| `note_zh` / `note_en` | 「注」 |
 
-- 阴爻、阳爻由爻名自动判断：含「九」画成阳爻（整条），含「六」画成阴爻（中间断开）。
-- 点一爻或「另见」会跳到对应编号的卡片；那张卡片还没建立时，显示「待上线」，不能点。
-- 乾卦的总览卡已经建好作为示范。英文字段都还空着；六爻指向的编号 2–7、另见指向的 8–11，只是我先暂定的，可以改。
+阴爻、阳爻由爻名自动判断：含「九」画成整条，含「六」画成中间断开。点编号会跳到同一卦里那一张对读卡；还没建立的编号显示为灰色。
 
 ## 规则
-- 同一部经典里，**编号最大的那张 = 最新一张，标「免费」**；其余标「会员」。
+- 同一部经典里，排在最后的那张（章号、张号最大）= 最新一张，标「免费」；其余标「会员」。
 - 系列页按「最新在前」排列。
-- 文件名只是方便你自己找，网站只看文件里的 `book` 和编号。
 
 ## JSON 格式注意
 - 每个字段的文字都要用英文双引号 `"..."` 括起来，字段之间用英文逗号 `,` 分开，最后一项后面**不要**加逗号。

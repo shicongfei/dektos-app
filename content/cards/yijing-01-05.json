@@ -1,0 +1,32 @@
+{
+  "book": "yijing",
+  "chapter": 1,
+  "series_index": 5,
+  "series_total": 10,
+  "title_zh": "见龙在田",
+  "title_en": "The Dragon Appears",
+  "source_zh": "九二",
+  "source_en": "Line 2",
+  "highlight_lines": [
+    2
+  ],
+  "lines_label_zh": "九二",
+  "lines_label_en": "Line 2",
+  "original": "**见龙在田**，利见大人。",
+  "vernacular_zh": "龙已出现在田野上，开始崭露头角，适合拜见德高望重的人。",
+  "translation_en": "The dragon appearing in the field. It will be advantageous to meet with the great man.",
+  "scripture": [
+    {
+      "text_zh": "所以，你们要自卑，服在神大能的手下，到了时候，他必叫你们升高。",
+      "text_en": "Humble yourselves therefore under the mighty hand of God, that he may exalt you in due time.",
+      "ref_zh": "彼得前书 5:6",
+      "ref_en": "1 Peter 5:6"
+    }
+  ],
+  "note_zh": "乾卦中的龙是阳刚、君子、圣王的象征。",
+  "note_en": "In Qian, the dragon symbolizes yang strength, the noble person and the sage-king.",
+  "insight_zh": "易经：龙现于田，**时至而显**；彼得：谦卑顺服，**按时升高**。",
+  "insight_en": "I Ching: the dragon appears **when its time comes**. Peter: stay humble, **God lifts in due time**.",
+  "video_zh": "",
+  "video_en": ""
+}
